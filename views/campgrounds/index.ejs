@@ -1,9 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <body>
   <h1>All Campgrounds</h1>
-  <div>
-    <a href="/campgrounds/new">Add Camground</a>
-  </div>
+
   <ul>
     <% campgrounds.forEach(campground => { %>
     <div class="card" mb-3>
