@@ -5,8 +5,10 @@
     <h1 class="text-center">New Campground</h1>
     <div class="col-6 offset-3">
       <form
+        class="validated-form"
         action="/campgrounds/<%= campground._id %>?_method=PUT"
         method="POST"
+        novalidate
       >
         <div class="mb-3">
           <label class="form-label" for="title">Title</label>
@@ -17,7 +19,9 @@
             name="campground[title]"
             value="<%= campground.title %>"
             autofocus
+            required
           />
+          <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="mb-3">
@@ -28,7 +32,9 @@
             type="text"
             name="campground[location]"
             value="<%= campground.location %>"
+            required
           />
+          <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="mb-3">
@@ -39,7 +45,9 @@
             type="text"
             name="campground[image]"
             value="<%= campground.image %>"
+            required
           />
+          <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="mb-3">
@@ -55,7 +63,9 @@
               aria-describedby="price-label"
               name="campground[price]"
               value="<%= campground.price %>"
+              required
             />
+            <div class="valid-feedback">Looks good!</div>
           </div>
         </div>
 
@@ -66,9 +76,11 @@
             id="description"
             type="text"
             name="campground[description]"
+            required
           >
 <%= campground.description %></textarea
           >
+          <div class="valid-feedback">Looks good!</div>
         </div>
 
         <div class="mb-3">
