@@ -8,11 +8,13 @@ const morgan = require('morgan');
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
 const ExpressError = require('./utils/ExpressError');
-
 const campgroundsRoute = require('./routes/campgrounds');
 const reviewsRoute = require('./routes/reviews');
+const User = require('./models/user');
 
 // MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -48,6 +50,11 @@ app.use(
   })
 );
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');
@@ -57,6 +64,12 @@ app.use((req, res, next) => {
 
 app.use('/campgrounds', campgroundsRoute);
 app.use('/campgrounds/:id/reviews', reviewsRoute);
+
+app.get('/fakeUser', async (req, res) => {
+  const user = new User({ email: 'colt@gmail.com', username: 'colt' });
+  const newUser = await User.register(user, 'password');
+  res.send(newUser);
+});
 
 // Landing page
 app.get('/', (req, res) => {
