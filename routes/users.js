@@ -33,7 +33,7 @@ router.get('/login', (req, res) => {
   res.render('users/login');
 });
 
-//  Post login
+//  Login
 router.post(
   '/login',
   passport.authenticate('local', {
@@ -45,5 +45,12 @@ router.post(
     res.redirect('/campgrounds');
   }
 );
+
+// Logout
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success', 'Goodnye!!');
+  res.redirect('/campgrounds');
+});
 
 module.exports = router;
