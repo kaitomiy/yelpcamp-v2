@@ -15,6 +15,7 @@ const reviewsRoute = require('./routes/reviews');
 // MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
+  useCreateIndex: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
@@ -31,6 +32,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/campgrounds', campgroundsRoute);
 app.use('/campgrounds/:id/reviews', reviewsRoute);
