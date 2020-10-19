@@ -12,8 +12,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
 const ExpressError = require('./utils/ExpressError');
-const campgroundsRoute = require('./routes/campgrounds');
-const reviewsRoute = require('./routes/reviews');
+const campgroundRoutes = require('./routes/campgrounds');
+const reviewRoutes = require('./routes/reviews');
+const userRoutes = require('./routes/users');
 const User = require('./models/user');
 
 // MongoDB
@@ -62,8 +63,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/campgrounds', campgroundsRoute);
-app.use('/campgrounds/:id/reviews', reviewsRoute);
+app.use('/campgrounds', campgroundRoutes);
+app.use('/campgrounds/:id/reviews', reviewRoutes);
+app.use('/', userRoutes);
 
 app.get('/fakeUser', async (req, res) => {
   const user = new User({ email: 'colt@gmail.com', username: 'colt' });
