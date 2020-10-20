@@ -1,14 +1,17 @@
 const Campground = require('../models/campground');
 
+// Get all posts
 module.exports.index = async (req, res) => {
   const campgrounds = await Campground.find({});
   res.render('campgrounds/index', { campgrounds });
 };
 
+// Get a new post form
 module.exports.renderNewForm = (req, res) => {
   res.render('campgrounds/new');
 };
 
+// Create a new post
 module.exports.createCampground = async (req, res) => {
   const campground = new Campground(req.body.campground);
   campground.author = req.user._id;
@@ -17,6 +20,7 @@ module.exports.createCampground = async (req, res) => {
   res.redirect(`/campgrounds/${campground._id}`);
 };
 
+// Get a post
 module.exports.showCampground = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
     .populate({ path: 'reviews', populate: { path: 'author' } })
@@ -28,6 +32,7 @@ module.exports.showCampground = async (req, res) => {
   res.render('campgrounds/show', { campground });
 };
 
+// Get a edit form
 module.exports.renderEditForm = async (req, res) => {
   const { id } = req.params;
   const campground = await Campground.findById(id);
@@ -38,6 +43,7 @@ module.exports.renderEditForm = async (req, res) => {
   res.render('campgrounds/edit', { campground });
 };
 
+// Update a post
 module.exports.updateCampground = async (req, res) => {
   const { id } = req.params;
   const campground = await Campground.findByIdAndUpdate(id, {
@@ -47,6 +53,7 @@ module.exports.updateCampground = async (req, res) => {
   res.redirect(`/campgrounds/${campground._id}`);
 };
 
+// Delete post
 module.exports.deleteCampground = async (req, res) => {
   const { id } = req.params;
   await Campground.findByIdAndDelete(id);
