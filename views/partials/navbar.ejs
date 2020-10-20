@@ -1,6 +1,8 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="%">YelpCamp</a>
+    <a class="navbar-brand" href="%"
+      ><i class="fas fa-fire-alt"></i> YelpCamp</a
+    >
     <button
       class="navbar-toggler"
       type="button"
@@ -14,9 +16,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/campgrounds">All Campgrounds</a>
-        <a class="nav-link" href="/campgrounds/new">New Campground</a>
+        <a class="nav-link" href="/"><i class="fas fa-tree"></i> Home</a>
+        <a class="nav-link" href="/campgrounds"
+          ><i class="fas fa-campground"></i> All Campgrounds</a
+        >
+        <a class="nav-link" href="/campgrounds/new"
+          ><i class="fas fa-mountain"></i> New Campground</a
+        >
       </div>
       <div class="navbar-nav ml-auto">
         <% if (!currentUser) { %>
