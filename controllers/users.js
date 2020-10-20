@@ -38,6 +38,6 @@ module.exports.login = (req, res) => {
 // Logout
 module.exports.logout = (req, res) => {
   req.logout();
-  req.flash('success', 'Goodnye!!');
+  req.flash('success', 'Goodbye!!');
   res.redirect('/campgrounds');
 };
