@@ -91,9 +91,11 @@ app.use(
   })
 );
 
+const secret = process.env.SECRET || 'secret';
+
 const store = new MongoStore({
   url: process.env.MONGODB_URI,
-  secret: 'secret',
+  secret,
   touchAfter: 24 * 60 * 60,
 });
 
@@ -105,7 +107,7 @@ app.use(
   session({
     store,
     name: 'blah',
-    secret: 'secret',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
