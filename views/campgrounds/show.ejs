@@ -8,7 +8,11 @@
       <div class="carousel-inner">
         <% campground.images.forEach((image, index) => { %>
         <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-          <img src="<%= image.url %>" class="d-block w-100" alt="" />
+          <img
+            src="<%= image.url %>"
+            class="d-block w-100"
+            alt="campground image"
+          />
         </div>
         <% }) %>
       </div>
@@ -40,7 +44,9 @@
         <p class="card-text"><%= campground.description %></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><%= campground.location %></li>
+        <li class="list-group-item text-muted">
+          <i class="fas fa-map-marker-alt"></i> <%= campground.location %>
+        </li>
         <li class="list-group-item">
           Submitted by <%= campground.author.username %>
         </li>
@@ -49,7 +55,8 @@
       <% if (currentUser && campground.author.equals(currentUser._id)) { %>
       <div class="card-body">
         <a
-          class="card-link btn btn-info"
+          class="btn btn-sm btn-info"
+          role="button"
           href="/campgrounds/<%= campground._id %>/edit"
           ><i class="fas fa-edit"></i> Edit</a
         >
@@ -58,13 +65,20 @@
           action="/campgrounds/<%= campground._id %>?_method=DELETE"
           method="POST"
         >
-          <button class="btn btn-danger">
+          <button class="btn btn-sm btn-danger">
             <i class="fas fa-trash"></i> Delete
           </button>
         </form>
       </div>
       <% } %>
-      <div class="card-footer text-muted">2 days ago</div>
+      <div class="card-footer">
+        <a
+          class="btn btn-sm btn-outline-primary"
+          href="/campgrounds"
+          role="button"
+          >Go Back</a
+        >
+      </div>
     </div>
   </div>
 

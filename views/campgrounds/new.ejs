@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="row">
-  <h1 class="text-center">New Campground</h1>
+  <h1 class="text-center">Create a new campground</h1>
   <div class="col-md-6 offset-md-3">
     <form
       action="/campgrounds"
@@ -18,9 +18,11 @@
           id="title"
           name="campground[title]"
           required
+          autofocus
         />
         <div class="valid-feedback">Looks good!</div>
       </div>
+
       <div class="mb-3">
         <label class="form-label" for="location">Location</label>
         <input
@@ -33,13 +35,6 @@
         <div class="valid-feedback">Looks good!</div>
       </div>
 
-      <!-- <div class="mb-3">
-              <label class="form-label" for="image">Image Url</label>
-              <input class="form-control" type="text" id="image" name="campground[image]" required>
-              <div class="valid-feedback">
-                  Looks good!
-              </div>
-          </div> -->
       <div class="mb-3">
         <label class="form-label" for="price">Campground Price</label>
         <div class="input-group">
@@ -69,6 +64,7 @@
         ></textarea>
         <div class="valid-feedback">Looks good!</div>
       </div>
+
       <div class="mb-3">
         <div class="form-file custom-file">
           <input
@@ -86,10 +82,13 @@
           </label>
         </div>
       </div>
+
       <div class="mb-3">
         <button class="btn btn-success">Add Campground</button>
       </div>
     </form>
-    <a href="/campgrounds">All Campgrounds</a>
+    <a class="btn btn-sm btn-outline-primary" href="/campgrounds" role="button"
+      >Go Back</a
+    >
   </div>
 </div>

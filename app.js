@@ -12,7 +12,7 @@ const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const MongoStore = require('connect-mongo')(session);
@@ -136,11 +136,11 @@ app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
-app.get('/fakeUser', async (req, res) => {
-  const user = new User({ email: 'colt@gmail.com', username: 'colt' });
-  const newUser = await User.register(user, 'password');
-  res.send(newUser);
-});
+// app.get('/fakeUser', async (req, res) => {
+//   const user = new User({ email: 'colt@gmail.com', username: 'colt' });
+//   const newUser = await User.register(user, 'password');
+//   res.send(newUser);
+// });
 
 // Landing page
 app.get('/', (req, res) => {
